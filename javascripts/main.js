@@ -24,9 +24,9 @@ function showProduct(products){
         if(season == 1){
             if(products.products[i].category_id == season){
                 var discountPrice = (products.products[i].price * .9).toFixed(2);
-                productsHTML+= `<tr>`;
+                productsHTML+= `<tr class="success">`;
                 productsHTML += `<td>${products.products[i].name}</td>`;
-                productsHTML += `<td>${discountPrice}</td>`;
+                productsHTML += `<td class="succes">${discountPrice}</td>`;
                 productsHTML += `</tr>`;
             } else{
             productsHTML+= `<tr>`;
@@ -37,9 +37,9 @@ function showProduct(products){
         } else if(season == 2){
             if (products.products[i].category_id == season){
             var discountPrice = (products.products[i].price * (.75)).toFixed(2);
-            productsHTML+= `<tr>`;
+            productsHTML+= `<tr class="success">`;
             productsHTML += `<td>${products.products[i].name}</td>`;
-            productsHTML += `<td>${discountPrice}</td>`;
+            productsHTML += `<td class="succes">${discountPrice}</td>`;
             productsHTML += `</tr>`;
             } else{
             productsHTML+= `<tr>`;
@@ -50,9 +50,9 @@ function showProduct(products){
         } else if(season == 3){
             if (products.products[i].category_id == season){
             var discountPrice = (products.products[i].price * (.85)).toFixed(2);
-            productsHTML+= `<tr>`;
+            productsHTML+= `<tr class="success">`;
             productsHTML += `<td>${products.products[i].name}</td>`;
-            productsHTML += `<td>${discountPrice}</td>`;
+            productsHTML += `<td >${discountPrice}</td>`;
             productsHTML += `</tr>`;
             } else{
             productsHTML+= `<tr>`;
@@ -75,7 +75,7 @@ function productRequestError(event){
     console.log("PRODUCT ERROR");
 }
 
-productRequest.send();
+
 
 
 
@@ -107,17 +107,19 @@ function seasonRequestError(event){
     console.log("SEASON ERROR");
 }
 
-seasonRequest.send();
+seasonRequest.send(productRequest.send());
 
 
 var seasonBtn = document.getElementById("season-btn");
 var seasonOptions = document.getElementsByName("season");
 var season="";
+var discount = "";
 
 seasonBtn.addEventListener("click", function(event){
     for (var i=0;i<seasonOptions.length;i++){
         if(seasonOptions[i].selected){
             season = seasonOptions[i].value;
+
         }
     }
 
